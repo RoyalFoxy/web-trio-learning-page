@@ -5,7 +5,7 @@ export default function ResetProgress() {
   const router = useRouter();
   useEffect(() => {
     localStorage.clear();
-    router.back();
+    router.push("/");
   });
 
   return <></>;
