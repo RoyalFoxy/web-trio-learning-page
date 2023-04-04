@@ -2,6 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NotFound from "../../404";
+import Gradient from "@/css/gradient";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import CourseLink from "@/components/CourseLink";
 
 export default function Home() {
   const [links, setLinks] = useState<string[]>([]);
@@ -35,14 +38,12 @@ export default function Home() {
       <h1
         style={{
           fontSize: "3rem",
-          background: `linear-gradient(to right, var(--${lang}-from) 0%, var(--${lang}-to) 100%)`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          ...Gradient({ from: `var(--${lang}-from)`, to: `var(--${lang}-to)` }),
         }}
       >
         {lang.charAt(0).toUpperCase() + lang.slice(1)}
       </h1>
-      <Link href="/">
+      <Link href="/" style={{ color: "var(--text)" }}>
         <h3 style={{ marginBottom: "1rem" }}>Go Home</h3>
       </Link>
       <div
@@ -54,73 +55,11 @@ export default function Home() {
         }}
       >
         {links.map((link) => {
-          return <FLink link={link} lang={lang as "html" | "css" | "js"} />;
+          return (
+            <CourseLink link={link} lang={lang as "html" | "css" | "js"} />
+          );
         })}
       </div>
     </div>
   );
-}
-
-interface FLink {
-  link: string;
-  lang: "html" | "css" | "js";
-}
-
-function FLink({ link, lang }: FLink) {
-  const name = link
-    .replace(
-      /(https:\/\/www\.w3schools\.com\/(html|css|js)\/((html|css|js)_)?(.*)\.asp)/,
-      "$5"
-    )
-    .replace("_", " ");
-
-  const [visited, setVisited] = useLocalStorage(
-    `${lang}-${name}`,
-    (key) => {
-      const stored = localStorage.getItem(key);
-      return stored ? JSON.parse(stored) : false;
-    },
-    (key, value) => localStorage.setItem(key, JSON.stringify(value))
-  );
-
-  return (
-    <div
-      key={link}
-      style={{
-        background: "var(--surface0)",
-        borderRadius: "var(--border-radius)",
-      }}
-    >
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => {
-          setVisited(true);
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            color: visited ? "var(--green)" : "var(--red)",
-            transition: "all 0.5s ease",
-          }}
-        >
-          {name.charAt(0).toUpperCase() + name.slice(1)}
-        </h4>
-      </a>
-    </div>
-  );
-}
-
-export function useLocalStorage<T>(
-  key: string,
-  getter: (key: string) => T,
-  setter: (key: string, value: T) => void
-) {
-  const [value, setValue] = useState(getter(key));
-  useEffect(() => setValue(getter(key)), [key]);
-  useEffect(() => setter(key, value), [key, value]);
-
-  return [value, setValue] as const;
 }

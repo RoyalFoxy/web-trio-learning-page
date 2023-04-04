@@ -1,3 +1,5 @@
+import Gradient from "@/css/gradient";
+
 interface NotFound {
   error?: string;
 }
@@ -15,9 +17,7 @@ export default function NotFound({ error }: NotFound) {
       <h1
         style={{
           fontSize: "10rem",
-          background: "linear-gradient(to right, #ff8a00 0%, #dd4c4f 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          ...Gradient({ from: "#ff8a00", to: "#dd4c4f" }),
         }}
       >
         404
