@@ -32,7 +32,7 @@ export default function CourseLink({ link, lang }: CourseLink) {
         borderRadius: "var(--border-radius)",
       }}
     >
-      <ExternalLink link={link}>
+      <ExternalLink link={link} onClick={() => setVisited(true)}>
         <h4
           style={{
             textAlign: "center",
