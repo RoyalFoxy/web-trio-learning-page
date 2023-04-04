@@ -1,4 +1,5 @@
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import ExternalLink from "./ExternalLink";
 
 export interface CourseLink {
   link: string;
@@ -6,12 +7,13 @@ export interface CourseLink {
 }
 
 export default function CourseLink({ link, lang }: CourseLink) {
-  const name = link
-    .replace(
-      /(https:\/\/www\.w3schools\.com\/(html|css|js)\/((html|css|js)_)?(.*)\.asp)/,
-      "$5"
-    )
-    .replace("_", " ");
+  const name =
+    link
+      .match(
+        /https:\/\/www\.w3schools\.com\/(html|css|js)\/((html|css|js)_)?(.*)\.asp/
+      )
+      ?.slice(-1)[0]
+      .replace("_", " ") || "";
 
   const [visited, setVisited] = useLocalStorage(
     `${lang}-${name}`,
@@ -30,14 +32,7 @@ export default function CourseLink({ link, lang }: CourseLink) {
         borderRadius: "var(--border-radius)",
       }}
     >
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => {
-          setVisited(true);
-        }}
-      >
+      <ExternalLink link={link}>
         <h4
           style={{
             textAlign: "center",
@@ -47,7 +42,7 @@ export default function CourseLink({ link, lang }: CourseLink) {
         >
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </h4>
-      </a>
+      </ExternalLink>
     </div>
   );
 }
