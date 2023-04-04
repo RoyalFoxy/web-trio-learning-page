@@ -80,11 +80,9 @@ export default function handler(
   if (typeof lang === "object" || !["html", "css", "js"].includes(lang))
     return res.status(400).json({ reason: "invalid lang query param" });
 
-  res
-    .status(200)
-    .json({
-      links: links[lang as "html" | "css" | "js"],
-    });
+  res.status(200).json({
+    links: links[lang as "html" | "css" | "js"],
+  });
 
   // console.log(req.query);
   // res.status(200).json({ name: "John Doe" });

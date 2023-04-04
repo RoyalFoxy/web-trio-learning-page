@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import NotFound from "../404";
+import NotFound from "../../404";
 
 export default function Home() {
   const [links, setLinks] = useState<string[]>([]);
@@ -25,9 +25,21 @@ export default function Home() {
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center", animation: "fade-in 1.5s ease" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        animation: "fade-in 1.5s ease",
+      }}
     >
-      <h1 style={{ fontSize: "3rem" }}>
+      <h1
+        style={{
+          fontSize: "3rem",
+          background: `linear-gradient(to right, var(--${lang}-from) 0%, var(--${lang}-to) 100%)`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
         {lang.charAt(0).toUpperCase() + lang.slice(1)}
       </h1>
       <Link href="/">

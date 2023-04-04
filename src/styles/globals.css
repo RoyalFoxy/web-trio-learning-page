@@ -21,6 +21,13 @@
   --surface0: #ccd0da;
   --red: #d20f39;
   --green: #40a02b;
+
+  --html-from: #d55a36;
+  --html-to: #f06429;
+  --css-from: #0170bb;
+  --css-to: #27a8de;
+  --js-from: #e4a126;
+  --js-to: #f0be25;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -13,7 +13,8 @@ export default function Home() {
       <h1
         style={{
           fontSize: "5rem",
-          background: "linear-gradient(to right, #ff8a00 0%, #dd4c4f 100%)",
+          background:
+            "linear-gradient(to right, var(--html-to) 0%, var(--css-to) 50%, var(--js-to) 100%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -28,21 +29,9 @@ export default function Home() {
           width: "calc(100vw - var(--margin) * 2)",
         }}
       >
-        <FLink
-          link="html"
-          name="HTML"
-          gradient={{ from: "#d55a36", to: "#f06429" }}
-        />
-        <FLink
-          link="css"
-          name="CSS"
-          gradient={{ from: "#0170bb", to: "#27a8de" }}
-        />
-        <FLink
-          link="js"
-          name="JavaScript"
-          gradient={{ from: "#e4a126", to: "#f0be25" }}
-        />
+        <FLink link="html" name="HTML" />
+        <FLink link="css" name="CSS" />
+        <FLink link="js" name="JavaScript" />
       </div>
     </div>
   );
@@ -51,16 +40,12 @@ export default function Home() {
 interface FLink {
   link: string;
   name: string;
-  gradient: {
-    from: string;
-    to: string;
-  };
 }
 
-function FLink({ link, name, gradient: { from, to } }: FLink) {
+function FLink({ link, name }: FLink) {
   return (
     <Link
-      href={`/${link}`}
+      href={`/languages/${link}`}
       style={{
         background: "var(--surface0)",
         padding: "0.5rem",
@@ -73,7 +58,7 @@ function FLink({ link, name, gradient: { from, to } }: FLink) {
       <h2
         style={{
           // textAlign: "center",
-          background: `linear-gradient(to right, ${from} 0%, ${to} 100%)`,
+          background: `linear-gradient(to right, var(--${link}-from) 0%, var(--${link}-to) 100%)`,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
