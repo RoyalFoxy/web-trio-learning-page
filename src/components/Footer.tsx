@@ -20,7 +20,7 @@ export default function Footer() {
             borderRadius: "var(--border-radius)",
           }}
         >
-          <p style={{ fontSize: "1.15rem" }}>
+          <p style={{ fontSize: "var(--footer-size)" }}>
             Created by{" "}
             <ExternalLink link="https://royalfoxy.xyz/">
               Manuel Oesch
@@ -40,7 +40,7 @@ export default function Footer() {
             borderRadius: "var(--border-radius)",
           }}
         >
-          <p style={{ fontSize: "1.15rem" }}>
+          <p style={{ fontSize: "var(--footer-size)" }}>
             Hackable on{" "}
             <ExternalLink link="https://github.com/RoyalFoxy/web-trio-learning-page">
               Github
