@@ -10,10 +10,10 @@ export default function CourseLink({ link, lang }: CourseLink) {
   const name =
     link
       .match(
-        /https:\/\/www\.w3schools\.com\/(html|css|js)\/((html|css|js)_)?(.*)\.asp/
+        /https:\/\/www\.w3schools\.com\/(html|css|js)\/((html|css|js)[0-9]?_)?(.*)\.asp/
       )
       ?.slice(-1)[0]
-      .replace("_", " ") || "";
+      .replaceAll("_", " ") || "";
 
   const [visited, setVisited] = useLocalStorage(
     `${lang}-${name}`,

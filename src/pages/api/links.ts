@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const links = {
@@ -66,7 +65,6 @@ const links = {
 };
 
 type Data = {
-  // name: string;
   reason?: string;
   links?: string[];
 };
@@ -84,7 +82,4 @@ export default function handler(
   res.status(200).json({
     links: links[lang as "html" | "css" | "js"],
   });
-
-  // console.log(req.query);
-  // res.status(200).json({ name: "John Doe" });
 }
