@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NotFound from "../../404";
 import Gradient from "@/css/gradient";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import CourseLink from "@/components/CourseLink";
 
 export default function Home() {

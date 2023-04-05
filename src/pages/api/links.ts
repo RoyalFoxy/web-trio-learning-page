@@ -38,6 +38,7 @@ const links = {
     "https://www.w3schools.com/css/css_dimension.asp",
     "https://www.w3schools.com/css/css_font.asp",
     "https://www.w3schools.com/css/css_max-width.asp",
+    "https://www.w3schools.com/css/css3_shadows_box.asp",
   ],
   js: [
     "https://www.w3schools.com/js/default.asp",
